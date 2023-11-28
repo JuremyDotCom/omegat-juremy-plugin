@@ -1,73 +1,29 @@
-# OmegaT plugin development skeleton
+# Juremy lookup trigger plugin for OmegaT
 
-## How to get skeleton into your project
+This plugins fakes being a machine translation provider, while it doesn't return any results.
+Instead, it ships the search results to a separately connected Juremy UI.
 
-It is recommend to use `Use this template` button on upper-right side of github project page,
-to create your project repository.
+## Setting up
 
-![](https://docs.github.com/assets/images/help/repository/use-this-template-button.png)
+### Installing the plugin for OmegaT
 
-## Gradle DSL
+TODO describe where to get the zip and where to copy it.
 
-There are two examples in skeleton; Groovy DSL(`build.gradle`) and Kotlin DSL(`build.gradle.kts`)
-When you prefer Groovy DSL, please rename `build.gradle.disabled` to `build.gradle` and remove `build.gradle.kts`.
+### Setting up access
 
-## Where you should change?
+Enable the search push feature on your Juremy user settings. Copy the generated app token to
+the dialog in OmegaT under `Options > Preferences > Machine Translation > Juremy > Configure`.
 
-Here is a hint for modifications.
+For best experience, enable automatically triggering Juremy using
+`Options > Machine Translation > Automatically Fetch Translations`.
 
-- Source code: `src/main/<lang>/*`
-- Test code: `src/test/<lang>/*` and `src/test/resources/*`
-- Project.name in `settings.gradle`
-- Properties: description, title, website and category
-- Plugin Main class name in `build.gradle.kts`.
-- Coding rules: `config/checkstyle/checkstyle.xml`
+## Development
 
-## Build system
+To develop the plugin, get JDK 14 or later on the path, and do `./gradlew build`.
 
-This skeleton use a Gradle build system as same as OmegaT version 4.3.0 and later.
+To start OmegaT with the plugin, do `./gradlew runOmegaT`.
 
-## Dependency
+To clean up source code, run `./gradlew spotlessApply`.
 
-OmegaT and dependencies are located on remote maven repositories.
-It is necessary to connect the internet to compile your project.
-
-Current skeleton example refers OmegaT 5.2.0.
-
-All complex configurations to refer OmegaT core are handled by
-`gradle-omegat-plugin`.
-
-## FatJar(ShadowJar)
-
-OmegaT considered a plugin is a single jar file. If it is depend on some libraries, 
-you should ship your plugin with these libraries.
-It is why generating a FatJar, a single jar file with all runtime dependencies
-which is not provided with OmegaT.
-
-`gradle-omegat-plugin` offers special gradle configuration `ParckIntoJar`.
-When specified it, gradle will generate a proper FatJar for you.
-
-
-## Where is a built artifact?
-
-You can find distribution files in `build/distributions/*.zip`.
-Also you can find jar files at `build/libs/`
-
-## Test report
-
-You will find a test results report at `build/reports/` and can show it with your favorite web browser.
-
-## Github actions
-
-There is an example script to use Github Actions for CI/CD.
-
-
-## Installation
-
-You can get a plugin jar file from zip distribution file.
-OmegaT plugin should be placed in `$HOME/.omegat/plugin` or `C:\Program Files\OmegaT\plugin`
-depending on your operating system.
-
-## License
-
-This project is distributed under the GNU general public license version 3 or later.
+This plugin was forked from the https://github.com/omegat-org/plugin-skeleton and the machinetranslation interface was
+adapted from https://github.com/omegat-org/omegat/blob/master/machinetranslators/deepl/src/main/java/org/omegat/machinetranslators/deepl/DeepLTranslate.java.

@@ -1,14 +1,5 @@
 # Change Log
-All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## 0.0.1
 
-### Add
-- foo
-- boo
-
-### Changed
-
-### Fixed
-
-[Unreleased]: https://github.com/miurahr/omegat-plugin-skelton/compare/v0.1...HEAD
+Initial release.
