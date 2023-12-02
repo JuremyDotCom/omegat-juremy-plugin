@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
  */
 public class JuremyLookup extends BaseTranslate {
 
+    private static final String VERSION = "0.0.1";  // keep in sync with build.gradle.kts
     static final ResourceBundle BUNDLE = ResourceBundle.getBundle("org.omegat.machinetranslators.juremy.Bundle");
 
     public static final String ALLOW_JUREMY_TRANSLATE = "allow_juremy_translate";
@@ -134,6 +135,7 @@ public class JuremyLookup extends BaseTranslate {
             return;
         }
         final Map<String, String> headers = new TreeMap<>();
+        populateUserAgentHeader(headers);
         populateAppTokenHeader(headers);
 
         final String res;
@@ -171,6 +173,10 @@ public class JuremyLookup extends BaseTranslate {
             throw new MachineTranslateError(BUNDLE.getString("JUREMY_ROUTING_RESPONSE_PARSE_ERROR"));
         }
         didSetupRoute = true;
+    }
+
+    private void populateUserAgentHeader(Map<String, String> headers) {
+        headers.put("User-Agent", "OmegaTJuremySearchPush/" + VERSION);
     }
 
     /**
@@ -257,6 +263,7 @@ public class JuremyLookup extends BaseTranslate {
 
         Map<String, String> headers = new TreeMap<>();
         setupRouteIfNeededAndPopulateRoutingHeader(headers);
+        populateUserAgentHeader(headers);
         populateAppTokenHeader(headers);
 
         try {
